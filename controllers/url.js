@@ -30,7 +30,17 @@ async function handleRedirectURL(req, res) {
     return res.redirect(entry.redirectURL);
 }
 
+async function handleGetAnalytics(req, res) {
+    const short_ID = req.params.shortId;
+    const entry = await URL.findOne({shortId: short_ID});
+    return res.json({
+        totalCLicks: entry.visitHistory.length,
+        analytics: entry.visitHistory,
+    });
+}
+
 module.exports = {
     handleGenerateNewURL,
     handleRedirectURL,
+    handleGetAnalytics,
 };
