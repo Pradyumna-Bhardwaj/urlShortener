@@ -21,7 +21,7 @@ async function handleRedirectURL(req, res) {
     const short_ID = req.params.shortId;
     const filter = {shortId: short_ID}
     const update = {$push:{visitHistory: {timestamp: Date.now(),}}}
-            // Below is the logic for line 24
+            // Below is the logic for line 23
             // function update (entry) {
             //         entry.visitHistory.push({timestamp: Date.now()})
             //     };

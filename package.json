@@ -9,9 +9,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.21.0",
     "mongoose": "^8.6.3",
-    "nodemon": "^3.1.5",
+    "nodemon": "^3.1.7",
     "shortid": "^2.2.16",
     "ssid": "^0.0.7"
   }
