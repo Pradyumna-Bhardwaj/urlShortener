@@ -1,5 +1,6 @@
 const ssid = require("ssid");
 const URL = require("../models/url");
+const PORT = 8001
 
 async function handleGenerateNewURL(req, res) {
     const body = req.body;
@@ -14,7 +15,10 @@ async function handleGenerateNewURL(req, res) {
         redirectURL: body.url,
         visitHistory: [],
     });
-    return res.json({ id: url.shortId });
+    return res.render("home",{
+        id: short_ID,
+        port: PORT
+    })
 }
 
 async function handleRedirectURL(req, res) {
