@@ -15,8 +15,8 @@ async function handleGenerateNewURL(req, res) {
         redirectURL: body.url,
         visitHistory: [],
     });
-    return res.render("home",{
-        id: short_ID,
+    return res.render("home",{  
+        id: short_ID,   // here we're passing an object hence we have to name its specific properties
         port: PORT
     })
 }
