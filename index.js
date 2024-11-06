@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path')
 const {connectToMongoDB} = require("./connection.js")
+
 const urlRoute = require("./routes/url");
 const staticRouter = require("./routes/staticRouter.js");
+const userRoute = require("./routes/user.js")
 
 const app = express();
 const PORT = 8001;
@@ -16,6 +18,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use("/url", urlRoute);
 app.use("/", staticRouter);
+app.use("/user", userRoute);
 
 connectToMongoDB("mongodb://127.0.0.1:27017/short-url").then(()=>console.log("MongoDB connected"));
 
