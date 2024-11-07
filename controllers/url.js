@@ -31,7 +31,11 @@ async function handleRedirectURL(req, res) {
             //     };
             //     update(entry);
     entry = await URL.findOneAndUpdate(filter,update);
-    return res.redirect(entry.redirectURL);
+    if(entry){
+        return res.redirect(entry.redirectURL);}
+    else{
+        return res.end("wrong id")
+    }
 }
 
 async function handleGetAnalytics(req, res) {
