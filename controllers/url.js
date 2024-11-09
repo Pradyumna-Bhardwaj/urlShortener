@@ -14,6 +14,7 @@ async function handleGenerateNewURL(req, res) {
         shortId: short_ID,
         redirectURL: body.url,
         visitHistory: [],
+        createdBy: req.user._id,
     });
     return res.render("home",{  
         id: short_ID,   // here we're passing an object hence we have to name its specific properties
