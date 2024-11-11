@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use("/", checkAuth, staticRouter);
+app.use("/", checkAuth, staticRouter);  //this cheeckAuth is to get user from cookie to access and show only those urls made by the specific user 
 app.use("/url", restrictToLoggedinUserOnly, urlRoute);
 app.use("/user", userRoute);
 
