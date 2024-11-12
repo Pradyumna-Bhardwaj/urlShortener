@@ -3,9 +3,9 @@ const {getUser} = require("../services/auth.js")
 async function restrictToLoggedinUserOnly(req, res, next){
     const userUid = req.headers["authorization"];
     
-    if(!userUid) return res.redirect("/login");
+    // if(!userUid) return res.redirect("/user/login");
 
-    const token = userUid.split("Bearer ")[1];  
+    const token = userUid?.split("Bearer ")[1];  
     const user = getUser(token);
 
     if(!user) return res.redirect("/login");
@@ -17,9 +17,9 @@ async function restrictToLoggedinUserOnly(req, res, next){
 async function checkAuth(req,res, next){
     const userUid = req.headers["authorization"];
 
-    if(!userUid) return res.redirect("/login");
+    // if(!userUid) return res.redirect("/login");
 
-    const token = userUid.split("Bearer ")[1];
+    const token = userUid?.split("Bearer ")[1];
     const user = getUser(token);
 
     req.user = user;
