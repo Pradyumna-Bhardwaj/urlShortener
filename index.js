@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const {connectToMongoDB} = require("./connection.js")
-const {restrictToLoggedinUserOnly, checkAuth} = require("./middlewares/auth.js")
+const {checkforAuthentication, restricTo} = require("./middlewares/auth.js")
 const {returnMongoUrl} = require("./pvt/mongoUrl.js")
 
 const urlRoute = require("./routes/url");
@@ -20,9 +20,10 @@ app.set('views', path.resolve("./views"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(checkforAuthentication);
 
-app.use("/", checkAuth, staticRouter);  //this cheeckAuth is to get user from cookie to access and show only those urls made by the specific user 
-app.use("/url", restrictToLoggedinUserOnly, urlRoute);
+app.use("/", staticRouter);  //this cheeckAuth is to get user from cookie to access and show only those urls made by the specific user 
+app.use("/url", restricTo(["NORMAL"]), urlRoute);
 app.use("/user", userRoute);
 
 connectToMongoDB(mongoUrl).then(()=>console.log("MongoDB connected"));

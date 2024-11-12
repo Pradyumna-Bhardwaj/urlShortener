@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const URL = require("../models/url");
+const { restricTo } = require("../middlewares/auth");
+
+router.get('/admin/urls', restricTo(["ADMIN"]), async(req, res) => {
+
+    if(!req.user) return res.redirect('/login');
+
+    const userUrls = await URL.find({}); 
+    return res.render("home",{      // passing variables to html 
+        urls: userUrls,
+    });
+});
 
 router.get('/', async(req, res) => {
 
